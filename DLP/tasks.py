@@ -13,6 +13,11 @@ async def send_caught_message(content: str, pattern_id: int, ts: float, channel:
 
 
 async def handle_message(message: str, ts: float, channel: str) -> None:
+    """
+    Now that I think about it, it would be better to move the retrieving of the patterns somewhere to the main file,
+    so that you don't make request every time. But thanks to this solution we can dynamically add patterns,
+    without restarting the container.
+    """
     patterns = await fetch_patterns()
     if patterns:
         for pattern in patterns:
