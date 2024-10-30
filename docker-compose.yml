@@ -1,0 +1,46 @@
+version: '3.9'
+
+services:
+  web:
+    build: ./backend
+    volumes:
+      - ./backend:/app
+    ports:
+      - "8000:8000"
+    env_file:
+      - ./.env
+    depends_on:
+      db:
+        condition: service_healthy
+
+  dlp:
+    build: ./dlp
+    volumes:
+      - ./dlp:/dlp
+    env_file:
+      - ./.env
+    depends_on:
+      - web
+
+  db:
+    image: mysql:9.0
+    restart: always
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    env_file:
+      - ./.env
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  elasticmq:
+    build: ./queue
+    ports:
+      - "9325:9325"
+      - "9324:9324"
+
+volumes:
+  mysql_data:
