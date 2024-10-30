@@ -1,7 +1,7 @@
 # Check Point assignment
 
 ### Run services
-1. Create `.env` based on `.env_template` and update variables
+1. Create `.env` based on `.env_template` and update variables (`AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` in elasticmq can be set to anything)
 2. Build images and run containers:
    ```
     docker-compose up --build -d
