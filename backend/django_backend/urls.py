@@ -22,7 +22,6 @@ from myapp.webhooks import slack_events
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    # todo: remove
-    path("slack/webhook", slack_events, name="slack_webhook"),
+    path("slack/webhook/", slack_events, name="slack_webhook"),
     path("api/", include("myapp.urls")),
 ]
