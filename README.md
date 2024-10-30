@@ -20,7 +20,7 @@
     ```
     ALLOWED_HOSTS=https://1c40-94-40-165-45.ngrok-free.app
    ```
-3. Set `{your_ngrok_url}/slack/webhook` as url in Slack Event Subscriptions
+3. Set `{your_ngrok_url}/slack/webhook/` as url in Slack Event Subscriptions
 4. Subscribe to bot events: `message.channels`, `message.groups`, `message.im`
 5. Add User Token Scopes `chat:write`
 6. Set Slack variables in `.env`
